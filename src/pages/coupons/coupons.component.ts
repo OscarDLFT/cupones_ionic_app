@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Coupon } from 'src/app/model/coupon';
 import { CouponService } from 'src/app/services/coupon.service';
 
@@ -14,6 +15,7 @@ export class CouponsComponent  implements OnInit {
 
   constructor(
     private couponService: CouponService,
+    private navController: NavController,
   ) { }
 
   ngOnInit() {
@@ -23,7 +25,15 @@ export class CouponsComponent  implements OnInit {
   /** Recogemos los valores del servicio */
   datosCoupons(): any {
     this.couponService.getCoupons().then((res: any[]) => {
-      this.coupons = res;
+      res.forEach(x => {
+        const obj: Coupon = new Coupon(x);
+        this.coupons.push(obj);
+      })
     });
+  }
+
+  /** dirige a la card seleccionada */
+  goToCard(): void {
+    this.navController.navigateForward('card');
   }
 }

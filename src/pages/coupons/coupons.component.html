@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let coupon of coupons">
+  <ion-card *ngFor="let coupon of coupons; let last = last" [ngClass]="{'margin-last': last}">
     <ion-img [src]="coupon.img" alt=""></ion-img>
     <ion-card-header>
       <ion-card-title>{{coupon.name}}</ion-card-title>
@@ -20,4 +20,10 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="goToCard()">
+    <ion-fab-button>
+      <ion-icon name="card-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
