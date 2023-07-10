@@ -1,3 +1,23 @@
-<p>
-  coupons works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Coupons</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let coupon of coupons">
+    <ion-img [src]="coupon.img" alt=""></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{coupon.name}}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>{{coupon.discount}} %</ion-label>
+        <ion-button slot="end" (click)="coupon.active = !coupon.active">
+          {{coupon.active ? 'Desactivar' : 'Activar'}}
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
