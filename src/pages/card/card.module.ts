@@ -18,7 +18,7 @@ const rutas: Routes = [
     CommonModule,
     RouterModule.forChild(rutas),
     FormsModule,
-    IonicModule
-  ]
+    IonicModule,
+  ],
 })
 export class CardModule { }
