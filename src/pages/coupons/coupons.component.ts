@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CouponService } from 'src/app/services/coupon.service';
 
 @Component({
   selector: 'app-coupons',
@@ -7,8 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CouponsComponent  implements OnInit {
 
-  constructor() { }
+  /** ARRAYS */
+  coupons: any[] = [];
+  constructor(
+    private couponService: CouponService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.datosCoupons();
+  }
 
+  /** Recogemos los valores del servicio */
+  datosCoupons(): any {
+    this.couponService.getCoupons().then((res: any[]) => {
+      this.coupons = res;
+      console.log(res);
+    });
+  }
 }
